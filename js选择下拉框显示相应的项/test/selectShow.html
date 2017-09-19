@@ -1,0 +1,42 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>js选择下拉框显示响应的项</title>
+    <meta charset="utf-8" />
+    <script src="../js/jquery-1.10.2.min.js"></script>
+    <style type="text/css">
+        .none {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <select id="sel">
+        <option>选项1</option>
+        <option>选项2</option>
+        <option>选项3</option>
+        <option data-selector="country">选项4</option>
+    </select>
+
+    <div class="contain ">内容1</div>
+    <div class="contain ">内容2</div>
+    <div class="contain none" data-show="country">内容3</div>
+    <div class="contain none" data-show="country">内容4</div>
+
+    <script type="text/javascript">
+        $(function () {
+            $('#sel').change(function () {
+                var optionAttr = $(this).find("option:selected").attr('data-selector');
+
+                if (!optionAttr) {
+                    $('.contain[data-show="country').addClass('none');
+                } else {
+                    $('.contain[data-show="' + optionAttr + '"]').removeClass('none');
+                }
+
+            })
+        })
+    </script>
+</body>
+</html>
